@@ -10,7 +10,7 @@ import re
 from sklearn.linear_model import *
 from sklearn.metrics import *
 #from sklearn.model_selection import *
-#from sklearn.naive_bayes import *
+from sklearn.naive_bayes import *
 from sklearn.neural_network import *
 from sklearn.tree import *
 import statistics
@@ -1196,20 +1196,36 @@ def main():
     mod_DT_w_g23_c23.train(Xy_w_g23_c23_train)
 
     # Logistic regression
-    mod_LR_w = nltk.classify.SklearnClassifier(LogisticRegression())
+    mod_LR_w = nltk.classify.SklearnClassifier(LogisticRegression(max_iter=500))
     mod_LR_w.train(Xy_w_train)
-    mod_LR_w_g2 = nltk.classify.SklearnClassifier(LogisticRegression())
+    mod_LR_w_g2 = nltk.classify.SklearnClassifier(LogisticRegression(max_iter=500))
     mod_LR_w_g2.train(Xy_w_g2_train)
-    mod_LR_w_g23 = nltk.classify.SklearnClassifier(LogisticRegression())
+    mod_LR_w_g23 = nltk.classify.SklearnClassifier(LogisticRegression(max_iter=500))
     mod_LR_w_g23.train(Xy_w_g23_train)
-    mod_LR_w_c2 = nltk.classify.SklearnClassifier(LogisticRegression())
+    mod_LR_w_c2 = nltk.classify.SklearnClassifier(LogisticRegression(max_iter=500))
     mod_LR_w_c2.train(Xy_w_c2_train)
-    mod_LR_w_c23 = nltk.classify.SklearnClassifier(LogisticRegression())
+    mod_LR_w_c23 = nltk.classify.SklearnClassifier(LogisticRegression(max_iter=500))
     mod_LR_w_c23.train(Xy_w_c23_train)
-    mod_LR_w_g2_c2 = nltk.classify.SklearnClassifier(LogisticRegression())
+    mod_LR_w_g2_c2 = nltk.classify.SklearnClassifier(LogisticRegression(max_iter=500))
     mod_LR_w_g2_c2.train(Xy_w_g2_c2_train)
-    mod_LR_w_g23_c23 = nltk.classify.SklearnClassifier(LogisticRegression())
+    mod_LR_w_g23_c23 = nltk.classify.SklearnClassifier(LogisticRegression(max_iter=500))
     mod_LR_w_g23_c23.train(Xy_w_g23_c23_train)
+
+	# Naive Bayes
+    mod_NB_w = nltk.classify.SklearnClassifier(BernoulliNB(binarize=False))
+    mod_NB_w.train(Xy_w_train)
+    mod_NB_w_g2 = nltk.classify.SklearnClassifier(BernoulliNB(binarize=False))
+    mod_NB_w_g2.train(Xy_w_g2_train)
+    mod_NB_w_g23 = nltk.classify.SklearnClassifier(BernoulliNB(binarize=False))
+    mod_NB_w_g23.train(Xy_w_g23_train)
+    mod_NB_w_c2 = nltk.classify.SklearnClassifier(BernoulliNB(binarize=False))
+    mod_NB_w_c2.train(Xy_w_c2_train)
+    mod_NB_w_c23 = nltk.classify.SklearnClassifier(BernoulliNB(binarize=False))
+    mod_NB_w_c23.train(Xy_w_c23_train)
+    mod_NB_w_g2_c2 = nltk.classify.SklearnClassifier(BernoulliNB(binarize=False))
+    mod_NB_w_g2_c2.train(Xy_w_g2_c2_train)
+    mod_NB_w_g23_c23 = nltk.classify.SklearnClassifier(BernoulliNB(binarize=False))
+    mod_NB_w_g23_c23.train(Xy_w_g23_c23_train)
 
     # Neural network
     mod_NN_w = nltk.classify.SklearnClassifier(MLPClassifier(max_iter=500))
@@ -1230,6 +1246,7 @@ def main():
     print("")
     print("Decision tree")
     print("Logistic regression")
+	print("Naive Bayes")
     print("Neural network")
 
     ########################################
@@ -1326,6 +1343,15 @@ def main():
     preds_LR_w_g2_c2   = [mod_LR_w_g2_c2.classify(X)   for X in X_w_g2_c2_test]
     preds_LR_w_g23_c23 = [mod_LR_w_g23_c23.classify(X) for X in X_w_g23_c23_test]
 
+	# Naive Bayes
+    preds_NB_w         = [mod_NB_w.classify(X)         for X in X_w_test]
+    preds_NB_w_g2      = [mod_NB_w_g2.classify(X)      for X in X_w_g2_test]
+    preds_NB_w_g23     = [mod_NB_w_g23.classify(X)     for X in X_w_g23_test]
+    preds_NB_w_c2      = [mod_NB_w_c2.classify(X)      for X in X_w_c2_test]
+    preds_NB_w_c23     = [mod_NB_w_c23.classify(X)     for X in X_w_c23_test]
+    preds_NB_w_g2_c2   = [mod_NB_w_g2_c2.classify(X)   for X in X_w_g2_c2_test]
+    preds_NB_w_g23_c23 = [mod_NB_w_g23_c23.classify(X) for X in X_w_g23_c23_test]
+
     # Neural network
     preds_NN_w         = [mod_NN_w.classify(X)         for X in X_w_test]
     preds_NN_w_g2      = [mod_NN_w_g2.classify(X)      for X in X_w_g2_test]
@@ -1362,6 +1388,15 @@ def main():
     acc_LR_w_g2_c2   = calc_acc(y_test, preds_LR_w_g2_c2)
     acc_LR_w_g23_c23 = calc_acc(y_test, preds_LR_w_g23_c23)
 
+	# Naive Bayes
+    acc_NB_w         = calc_acc(y_test, preds_NB_w)
+    acc_NB_w_g2      = calc_acc(y_test, preds_NB_w_g2)
+    acc_NB_w_g23     = calc_acc(y_test, preds_NB_w_g23)
+    acc_NB_w_c2      = calc_acc(y_test, preds_NB_w_c2)
+    acc_NB_w_c23     = calc_acc(y_test, preds_NB_w_c23)
+    acc_NB_w_g2_c2   = calc_acc(y_test, preds_NB_w_g2_c2)
+    acc_NB_w_g23_c23 = calc_acc(y_test, preds_NB_w_g23_c23)
+
     # Neural network
     acc_NN_w         = calc_acc(y_test, preds_NN_w)
     acc_NN_w_g2      = calc_acc(y_test, preds_NN_w_g2)
@@ -1389,6 +1424,15 @@ def main():
     print("{}{:<15}{}".format("  ", "w     c23", round(acc_LR_w_c23,     4)))
     print("{}{:<15}{}".format("  ", "w g2  c2",  round(acc_LR_w_g2_c2,   4)))
     print("{}{:<15}{}".format("  ", "w g23 c23", round(acc_LR_w_g23_c23, 4)))
+	print("")
+    print("{}".format("Naive Bayes"))
+    print("{}{:<15}{}".format("  ", "w",         round(acc_NB_w,         4)))
+    print("{}{:<15}{}".format("  ", "w g2",      round(acc_NB_w_g2,      4)))
+    print("{}{:<15}{}".format("  ", "w g23",     round(acc_NB_w_g23,     4)))
+    print("{}{:<15}{}".format("  ", "w     c2",  round(acc_NB_w_c2,      4)))
+    print("{}{:<15}{}".format("  ", "w     c23", round(acc_NB_w_c23,     4)))
+    print("{}{:<15}{}".format("  ", "w g2  c2",  round(acc_NB_w_g2_c2,   4)))
+    print("{}{:<15}{}".format("  ", "w g23 c23", round(acc_NB_w_g23_c23, 4)))
     print("")
     print("{}".format("Neural network"))
     print("{}{:<15}{}".format("  ", "w",         round(acc_NN_w,         4)))
@@ -1420,6 +1464,15 @@ def main():
     f1_LR_w_g2_c2   = calc_f1(y_test, preds_LR_w_g2_c2)
     f1_LR_w_g23_c23 = calc_f1(y_test, preds_LR_w_g23_c23)
 
+	# Naive Bayes
+    f1_NB_w         = calc_f1(y_test, preds_NB_w)
+    f1_NB_w_g2      = calc_f1(y_test, preds_NB_w_g2)
+    f1_NB_w_g23     = calc_f1(y_test, preds_NB_w_g23)
+    f1_NB_w_c2      = calc_f1(y_test, preds_NB_w_c2)
+    f1_NB_w_c23     = calc_f1(y_test, preds_NB_w_c23)
+    f1_NB_w_g2_c2   = calc_f1(y_test, preds_NB_w_g2_c2)
+    f1_NB_w_g23_c23 = calc_f1(y_test, preds_NB_w_g23_c23)
+
     # Neural network
     f1_NN_w         = calc_f1(y_test, preds_NN_w)
     f1_NN_w_g2      = calc_f1(y_test, preds_NN_w_g2)
@@ -1447,6 +1500,15 @@ def main():
     print("{}{:<15}{}".format("  ", "w     c23", round(f1_LR_w_c23,     4)))
     print("{}{:<15}{}".format("  ", "w g2  c2",  round(f1_LR_w_g2_c2,   4)))
     print("{}{:<15}{}".format("  ", "w g23 c23", round(f1_LR_w_g23_c23, 4)))
+	print("")
+    print("{}".format("Naive Bayes"))
+    print("{}{:<15}{}".format("  ", "w",         round(f1_NB_w,         4)))
+    print("{}{:<15}{}".format("  ", "w g2",      round(f1_NB_w_g2,      4)))
+    print("{}{:<15}{}".format("  ", "w g23",     round(f1_NB_w_g23,     4)))
+    print("{}{:<15}{}".format("  ", "w     c2",  round(f1_NB_w_c2,      4)))
+    print("{}{:<15}{}".format("  ", "w     c23", round(f1_NB_w_c23,     4)))
+    print("{}{:<15}{}".format("  ", "w g2  c2",  round(f1_NB_w_g2_c2,   4)))
+    print("{}{:<15}{}".format("  ", "w g23 c23", round(f1_NB_w_g23_c23, 4)))
     print("")
     print("{}".format("Neural network"))
     print("{}{:<15}{}".format("  ", "w",         round(f1_NN_w,         4)))

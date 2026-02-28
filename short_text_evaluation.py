@@ -1246,7 +1246,7 @@ def main():
     print("")
     print("Decision tree")
     print("Logistic regression")
-	print("Naive Bayes")
+    print("Naive Bayes")
     print("Neural network")
 
     ########################################
@@ -1370,7 +1370,7 @@ def main():
     print("")
     print_banner("Calculate accuracies")
 
-     # Decision tree
+    # Decision tree
     acc_DT_w         = calc_acc(y_test, preds_DT_w)
     acc_DT_w_g2      = calc_acc(y_test, preds_DT_w_g2)
     acc_DT_w_g23     = calc_acc(y_test, preds_DT_w_g23)
@@ -1424,7 +1424,7 @@ def main():
     print("{}{:<15}{}".format("  ", "w     c23", round(acc_LR_w_c23,     4)))
     print("{}{:<15}{}".format("  ", "w g2  c2",  round(acc_LR_w_g2_c2,   4)))
     print("{}{:<15}{}".format("  ", "w g23 c23", round(acc_LR_w_g23_c23, 4)))
-	print("")
+    print("")
     print("{}".format("Naive Bayes"))
     print("{}{:<15}{}".format("  ", "w",         round(acc_NB_w,         4)))
     print("{}{:<15}{}".format("  ", "w g2",      round(acc_NB_w_g2,      4)))
@@ -1500,7 +1500,7 @@ def main():
     print("{}{:<15}{}".format("  ", "w     c23", round(f1_LR_w_c23,     4)))
     print("{}{:<15}{}".format("  ", "w g2  c2",  round(f1_LR_w_g2_c2,   4)))
     print("{}{:<15}{}".format("  ", "w g23 c23", round(f1_LR_w_g23_c23, 4)))
-	print("")
+    print("")
     print("{}".format("Naive Bayes"))
     print("{}{:<15}{}".format("  ", "w",         round(f1_NB_w,         4)))
     print("{}{:<15}{}".format("  ", "w g2",      round(f1_NB_w_g2,      4)))

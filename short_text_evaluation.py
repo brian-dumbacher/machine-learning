@@ -835,7 +835,7 @@ def main():
     dataset         = "data"
     train_frac      = 0.8
     top_freq_thresh = 1
-    top_dom_thresh  = 0.4
+    top_dom_thresh  = 0.5
 
     print("")
     print("{:<30}{}".format("Dataset:",                  dataset))

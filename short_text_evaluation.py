@@ -738,41 +738,41 @@ def clean_text(text):
 def get_words(text):
     if text == "":
         return []
-    return text.split(" ")
+    return list(set(text.split(" ")))
 
 def get_grams2(text):
-    grams2 = []
+    grams2 = set()
     words  = get_words(text)
     n      = len(words)
     if n >= 2:
         for i in range(n - 1):
             gram2 = "GRAM2|" + "_".join([words[i], words[i + 1]])
-            grams2.append(gram2)
-    return grams2
+            grams2.add(gram2)
+    return list(grams2)
 
 def get_grams3(text):
-    grams3 = []
+    grams3 = set()
     words  = get_words(text)
     n      = len(words)
     if n >= 3:
         for i in range(n - 2):
             gram3 = "GRAM3|" + "_".join([words[i], words[i + 1], words[i + 2]])
-            grams3.append(gram3)
-    return grams3
+            grams3.add(gram3)
+    return list(grams3)
 
 def get_combs2(text):
-    combs2 = []
+    combs2 = set()
     words  = get_words(text)
     n      = len(words)
     if n >= 2:
         for i in range(n - 1):
             for j in range(i + 1, n):
                 comb2 = "COMB2|" + "_".join(sorted([words[i], words[j]]))
-                combs2.append(comb2)
-    return combs2
+                combs2.add(comb2)
+    return list(combs2)
 
 def get_combs3(text):
-    combs3 = []
+    combs3 = set()
     words  = get_words(text)
     n      = len(words)
     if n >= 3:
@@ -780,8 +780,8 @@ def get_combs3(text):
             for j in range(i + 1, n - 1):
                 for k in range(j + 1, n):
                     comb3 = "COMB3|" + "_".join(sorted([words[i], words[j], words[k]]))
-                    combs3.append(comb3)
-    return combs3
+                    combs3.add(comb3)
+    return list(combs3)
 
 def calc_wordbit_freqs_detail(wordbits_train, y_train, n_obs_train, unique_y_full):
     wordbit_freqs_detail = {}

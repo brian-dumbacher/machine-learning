@@ -741,8 +741,10 @@ def get_words(text):
     return list(set(text.split(" ")))
 
 def get_grams2(text):
+	if text == "":
+        return []
     grams2 = set()
-    words  = get_words(text)
+    words  = text.split(" ")
     n      = len(words)
     if n >= 2:
         for i in range(n - 1):
@@ -751,8 +753,10 @@ def get_grams2(text):
     return list(grams2)
 
 def get_grams3(text):
+	if text == "":
+        return []
     grams3 = set()
-    words  = get_words(text)
+    words  = text.split(" ")
     n      = len(words)
     if n >= 3:
         for i in range(n - 2):
@@ -761,8 +765,10 @@ def get_grams3(text):
     return list(grams3)
 
 def get_combs2(text):
+	if text == "":
+        return []
     combs2 = set()
-    words  = get_words(text)
+    words  = text.split(" ")
     n      = len(words)
     if n >= 2:
         for i in range(n - 1):
@@ -772,8 +778,10 @@ def get_combs2(text):
     return list(combs2)
 
 def get_combs3(text):
+	if text == "":
+        return []
     combs3 = set()
-    words  = get_words(text)
+    words  = text.split(" ")
     n      = len(words)
     if n >= 3:
         for i in range(n - 2):
@@ -847,6 +855,7 @@ def main():
     ###   Read in dataset                           ###
     ###   -- HuffPost article headlines             ###
     ###   -- NAICS write-in business descriptions   ###
+	###   -- 20 Newsgroups subject lines            ###
     ###   -- Stack Overflow thread titles           ###
     ###################################################
 

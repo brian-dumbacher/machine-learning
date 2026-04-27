@@ -1,4 +1,4 @@
-NAICS2022|Title
+NAICS2022|TITLE
 11|Agriculture, Forestry, Fishing and Hunting
 111|Crop Production
 1111|Oilseed and Grain Farming
